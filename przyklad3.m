@@ -1,6 +1,6 @@
 % Jakaś taka macierz pięcioprzekątniowa
 
-N = 100;
+N = 10;
 
 D0 = 4 * eye(N);
 D1 = diag(-2 * ones(N-1,1),  1);
