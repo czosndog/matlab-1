@@ -36,7 +36,7 @@ end
 for j = 1 : M
     i = 1;
     k = i + (j - 1) * N;    
-    b(k) = 80; % temperatura z lewej strony
+    b(k) = 20 + 2 * j; % temperatura z lewej strony
     i = M;
     k = i + (j - 1) * N;    
     b(k) = 20; % temperatura z prawej strony
