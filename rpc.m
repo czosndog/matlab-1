@@ -1,48 +1,42 @@
-N = 100; % liczba wierszy
-M = 100; % liczba kolumn
+N = 200; % liczba wierszy
+M = 200; % liczba kolumn
 
 % Macierz A
 
 A = speye(N * M);
 
 for i = 2 : (N - 1)
-    for j = 2 : (M - 1)
-        
-        k  = i + (j - 1) * N;
-        k1 = (i - 1) + (j - 1) * N;
-        k2 = (i + 1) + (j - 1) * N;
-        k3 = i + (j - 1 - 1) * N;
-        k4 = i + (j - 1 + 1) * N;
-        
+    for j = 2 : (M - 1)        
+        k  = i + (j - 1) * N;        
         A(k, k) = 4;
-        A(k, k1) = -1;
-        A(k, k2) = -1;
-        A(k, k3) = -1;
-        A(k, k4) = -1;        
+        A(k, k - 1) = -1;
+        A(k, k + 1) = -1;
+        A(k, k - M) = -1;
+        A(k, k + M) = -1;        
     end
 end
 
 b = zeros(N * M, 1);
 
-for i = 1 : N
+for i = 1 : N  % pętla po numerze wiersza
     j = 1;
     k = i + (j - 1) * N;
-    b(k) = 80; % temperatura z lewej strony
+    b(k) = 100; % temperatura z lewej strony
     j = M;
     k = i + (j - 1) * N;
     b(k) = 20; % temperatura z prawej strony
 end
 
-for j = 1 : M
+for j = 1 : M  % pętla po numerze kolumny
     i = 1;
     k = i + (j - 1) * N;    
-    b(k) = 20 + 2 * j; % temperatura z lewej strony
+    b(k) = 20; % temperatura u góry
     i = M;
     k = i + (j - 1) * N;    
-    b(k) = 20; % temperatura z prawej strony
+    b(k) = 20; % temperatura u dołu
 end
 
-% A = sparse(A);
+%A = sparse(A);
 
 tic
 T = A \ b;
